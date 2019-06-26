@@ -1,11 +1,11 @@
 function getPara(){
            var docker = $("#docker").val();
-           if(!docker){
+           if(docker == "0"){
                alert("请选择要查看日志的容器");
                return;
            }
            var lines = $("#lines").val();
-           if(!lines){
+           if(lines == "0"){
                alert("请选择要查看日志行数");
                return;
            }
