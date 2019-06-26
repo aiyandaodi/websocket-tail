@@ -2,7 +2,6 @@ package com.xxg.websocket;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -23,6 +22,7 @@ public class LogWebSocketHandle {
 	@OnOpen
 	public void onOpen(@PathParam("docker") String docker,  
             @PathParam("lines") int lines, Session session) {
+	    
 		try {
 		    if("".equals(docker) || null == docker){
 		        System.out.println("容器名为空！");

@@ -4,25 +4,21 @@
 <meta charset="utf-8">
 <title>tail log</title>
 <script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="index.js"></script>
 
 </head>
 <body>
     <div>
-    <select id="docker">
-    <option value="0" selected="selected">请选择容器</option>
-    <option value="demander">demander后台日志</option>
-    <option value="tester">tester后台日志</option>
-    <option value="admin">admin后台日志</option>
-    </select>
-    <select id="lines">
-    <option value="0" selected="selected">请选择行数</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
-    <option value="200">200</option>
-    </select>
+    <form action="Login" method="post">
+    <div>
+        用户名<input type="text" name="uname"/>
+        </div>
+       <div> 
+        密 码    <input type="password" name="upass"/>
+        </div>
+         <input type="submit" value="登录" />
+    </form>
     </div>
-	<button type="button" id="submitbtn" onclick="getPara()">提交</button>
+	
 </body>
 
 </html>
