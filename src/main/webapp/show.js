@@ -18,30 +18,37 @@ getRequest = function() {
 	return theRequest;
 };
 
-function getDockerLogs(){
+function getDockerLogs() {
 	var request = getRequest();
 	var docker = request["docker"];
-	//alert(docker);
-	if(!docker){
-        alert("请选择要查看日志的容器");
-        return;
-    }
+	// alert(docker);
+	if (!docker) {
+		alert("请选择要查看日志的容器");
+		return;
+	}
 	var lines = request["lines"];
-	//alert(lines);
-	if(!lines){
-        alert("请选择要查看日志行数");
-        return;
-    }
+	// alert(lines);
+	if (!lines) {
+		alert("请选择要查看日志行数");
+		return;
+	}
 	// 指定websocket路径
 	var host = window.location.host
-	var websocket = new WebSocket('ws://'+ host +'/log' + '/' + docker + '/' + lines);
+	var websocket = new WebSocket('ws://' + host + '/log' + '/' + docker + '/'
+			+ lines);
 	websocket.onmessage = function(event) {
 		// 接收服务端的实时日志并添加到HTML页面中
-		var ss = event.data.replace(/\form|\action|\"https|\"http|\https|\http|\[2m|\[0;39m|\[32m|\[35m6|\/g,"");
+		var ss = event.data
+				.replace(
+						/\https:\/\/gateway.95516.com\/gateway\/api\/queryTrans.do|\https:\/\/gateway.test.95516.com\/gateway\/api\/queryTrans.do|\form|\action|\"https|\"http|\https|\http|\[2m|\[0;39m|\[32m|\[35m6|\/g,
+						"");
 		$("#log-container div").append(ss);
 		// 滚动条滚动到最低部
-		var h = $(document).height()-$(window).height();
-        $(document).scrollTop(h);
-		$("#log-container").scrollTop($("#log-container div").height() - $("#log-container").height());
+		var h = $(document).height() - $(window).height();
+		$(document).scrollTop(h);
+		$("#log-container")
+				.scrollTop(
+						$("#log-container div").height()
+								- $("#log-container").height());
 	};
 }
