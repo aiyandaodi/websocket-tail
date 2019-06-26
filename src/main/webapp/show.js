@@ -39,9 +39,7 @@ function getDockerLogs() {
 	websocket.onmessage = function(event) {
 		// 接收服务端的实时日志并添加到HTML页面中
 		var ss = event.data
-				.replace(
-						/\https:\/\/gateway.95516.com\/gateway\/api\/queryTrans.do|\https:\/\/gateway.test.95516.com\/gateway\/api\/queryTrans.do|\form|\action|\"https|\"http|\https|\http|\[2m|\[0;39m|\[32m|\[35m6|\/g,
-						"");
+				.replace(/document.all.pay_form.submit();|\"https|\"http|\https|\http|\[2m|\[0;39m|\[32m|\[35m6|\/g,"");
 		$("#log-container div").append(ss);
 		// 滚动条滚动到最低部
 		var h = $(document).height() - $(window).height();
