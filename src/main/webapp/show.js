@@ -36,7 +36,6 @@ function getDockerLogs(){
 	var host = window.location.host
 	var websocket = new WebSocket('ws://'+ host +'/log' + '/' + docker + '/' + lines);
 	websocket.onmessage = function(event) {
-		$("#log-container div").html("");
 		// 接收服务端的实时日志并添加到HTML页面中
 		$("#log-container div").append(event.data);
 		// 滚动条滚动到最低部
