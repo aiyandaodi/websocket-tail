@@ -33,6 +33,9 @@ function getDockerLogs() {
 		alert("请选择要查看日志行数");
 		return;
 	}
+	if(lines > 200 ){
+		lines = 200;
+	}
 	if (flag) {
 		// 指定websocket路径
 		var host = window.location.host
@@ -42,7 +45,7 @@ function getDockerLogs() {
 			// 接收服务端的实时日志并添加到HTML页面中
 			var ss = event.data
 					.replace(
-							/submit|<form id = "pay_form" action="https:\/\/gateway.95516.com\/gateway\/api\/frontTransReq.do" method="post">|<form id = "pay_form" action="https:\/\/gateway.test.95516.com\/gateway\/api\/frontTransReq.do" method="post">|document.all.pay_form.submit();|\"https|\"http|\https|\http|\[2m|\[36m|\[0;39m|\[32m|\[35m6|\[33m|\/g,
+							/submit|<form id = "pay_form" action="https:\/\/gateway.95516.com\/gateway\/api\/frontTransReq.do" method="post">|<form id = "pay_form" action="https:\/\/gateway.test.95516.com\/gateway\/api\/frontTransReq.do" method="post">|document.all.pay_form.submit();|\"https|\"http|\https|\http|\[2m|\[36m|\[0;39m|\[32m|\[35m6|\[33m|\[31m|\/g,
 							"");
 			$("#log-container div").append(ss);
 			// $("#log-container div").append(event.data);

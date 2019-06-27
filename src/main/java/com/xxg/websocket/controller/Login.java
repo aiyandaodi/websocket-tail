@@ -57,10 +57,6 @@ public class Login extends HttpServlet {
            }else{
                response.getWriter().print("用户名或密码有误！请重新输入");
            }
-           
         }
-        
-        
 	}
-
 }

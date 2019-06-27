@@ -22,7 +22,6 @@ public class LogWebSocketHandle {
 	@OnOpen
 	public void onOpen(@PathParam("docker") String docker,  
             @PathParam("lines") int lines, Session session) {
-	    
 		try {
 		    if("".equals(docker) || null == docker){
 		        System.out.println("容器名为空！");
