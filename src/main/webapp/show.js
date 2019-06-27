@@ -33,30 +33,33 @@ function getDockerLogs() {
 		alert("请选择要查看日志行数");
 		return;
 	}
-	// 指定websocket路径
-	var host = window.location.host
-	var websocket = new WebSocket('ws://' + host + '/log' + '/' + docker + '/'
-			+ lines);
-	websocket.onmessage = function(event) {
-		// 接收服务端的实时日志并添加到HTML页面中
-		var ss = event.data
-				.replace(/submit|<form id = "pay_form" action="https:\/\/gateway.95516.com\/gateway\/api\/frontTransReq.do" method="post">|<form id = "pay_form" action="https:\/\/gateway.test.95516.com\/gateway\/api\/frontTransReq.do" method="post">|document.all.pay_form.submit();|\"https|\"http|\https|\http|\[2m|\[36m|\[0;39m|\[32m|\[35m6|\[33m|\/g,"");
-		$("#log-container div").append(ss);
-		//$("#log-container div").append(event.data);
-		// 滚动条滚动到最低部
-		var h = $(document).height() - $(window).height();
-		$(document).scrollTop(h);
-		$("#log-container")
-				.scrollTop(
-						$("#log-container div").height()
-								- $("#log-container").height());
-	};
+	if (flag) {
+		// 指定websocket路径
+		var host = window.location.host
+		var websocket = new WebSocket('ws://' + host + '/log' + '/' + docker
+				+ '/' + lines);
+		websocket.onmessage = function(event) {
+			// 接收服务端的实时日志并添加到HTML页面中
+			var ss = event.data
+					.replace(
+							/submit|<form id = "pay_form" action="https:\/\/gateway.95516.com\/gateway\/api\/frontTransReq.do" method="post">|<form id = "pay_form" action="https:\/\/gateway.test.95516.com\/gateway\/api\/frontTransReq.do" method="post">|document.all.pay_form.submit();|\"https|\"http|\https|\http|\[2m|\[36m|\[0;39m|\[32m|\[35m6|\[33m|\/g,
+							"");
+			$("#log-container div").append(ss);
+			// $("#log-container div").append(event.data);
+			// 滚动条滚动到最低部
+			var h = $(document).height() - $(window).height();
+			$(document).scrollTop(h);
+			$("#log-container").scrollTop(
+					$("#log-container div").height()
+							- $("#log-container").height());
+		};
+	}
 }
 
-function suspend(){
-		flag = false;
+function suspend() {
+	flag = false;
 }
-function startup(){
-		flag = true;
-		getDockerLogs();
+function startup() {
+	flag = true;
+	getDockerLogs();
 }
