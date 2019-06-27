@@ -54,10 +54,9 @@ function getDockerLogs() {
 }
 
 function suspend(){
-	if(flag){
 		flag = false;
-	}else{
+}
+function startup(){
 		flag = true;
 		getDockerLogs();
-	}
 }
