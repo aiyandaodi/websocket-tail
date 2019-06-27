@@ -1,3 +1,4 @@
+var flag = true;
 /**
  * 取得页面传递参数。（一般情况下，直接使用request参数即可）
  * 
@@ -50,4 +51,13 @@ function getDockerLogs() {
 						$("#log-container div").height()
 								- $("#log-container").height());
 	};
+}
+
+function suspend(){
+	if(flag){
+		flag = false;
+	}else{
+		flag = true;
+		getDockerLogs();
+	}
 }
